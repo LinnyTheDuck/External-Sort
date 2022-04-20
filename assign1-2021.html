@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+
+body { font-family: serif; font-size: 10pt}
+h2 { font-size: 24px; 
+font-style: italic;
+}
+
+
+</style>
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+<body>
+<h2> COMPX301-21A &mdash; Assignment One </h2>
+<h3> External sort merge</h3>
+<b> Due:</b> 8 April 2021 &mdash; 11pm
+<p>
+<b>Overview:</b>
+Implement in Java an external sort merge. The assignment should be
+done in pairs. There are two degrees of difficulty to choose from.
+The <b>A</b> solution asks for a balanced 2-way sort merge, and
+the <b>A+</b> solution asks for a balanced k-way sort merge. Both
+programs are to sort lines of text into ascending order based upon
+the judgment of the Java String compareTo() method. The sort should
+accept standard input and produce standard output (i.e. System.in
+and System.out), although temporary files will be needed during the
+sort. Each line of input is one datum, so you are sorting entire
+lines with respect to each other (like Unix "sort").
+</p>
+<h4>Initial runs:</h4>
+Implement a <i>replaceable minheap</i> in a separate class within a
+file called MyMinHeap.java. This heap must use an array for its
+underlying storage of data, and should support public methods for
+insert(), remove(), replace(), peek(), load() and reheap(), which
+carry out these usual heap operations efficiently. It must have a
+constructor that takes a positive integer specifying the maximum
+capacity of the heap. (If the constructor argument is invalid, just
+use a default size of 32, rather than crashing.)
+<p>
+Implement a program called CreateRuns.java that accepts data as
+standard input. It should take one integer command-line argument
+specifying the size of heap to use to create initial runs for an
+external sort merge. Runs must go to standard output, so you must
+devise a method to demarcate ends of runs. This program must create
+one of your minheaps with the capacity specified by the argument,
+then use replacement selection to create the initial runs. (N.b. if
+you struggle with replacement selection, you can implement heapsort
+and have fixed length runs, but your maximum grade will be a <b>B+</b>.)
+<h4>Distribute runs:</h4>
+Implement a java class called DistributeRuns.java whose constructor
+takes a positive integer greater than 1. It should accept standard
+input, which it expects will be text in the format of the output from
+your CreateRuns program. It must distribute those input runs evenly
+into some number of temporary files, as specified by the constructor
+argument. (If the argument is invalid, just use a default of 2
+rather than crashing.)
+<h4>Merge runs:</h4>
+Implement a java program called MergeRuns.java that takes a positive
+integer greater than one as a command-line argument. It should create
+a DistributeRuns object and use that to create temporary files, then
+perform a balanced k-way sort merge over those files. When only one
+output file is generated, the merge is done and your program must send
+the contents of that one final run to standard output.
+<p>
+For the <b>A</b> solution, no matter what integer value is passed
+into MergeRuns, just contruct a DistributeRuns object with argument 2 and
+thus perform a balanced 2-way sort merge. This will greatly
+simplify the merging stage. The <b>A+</b> solution is
+quite a bit trickier, as you will need to use another replaceable minheap
+to efficiently merge more than two input files on each pass.
+<h4>Usage</h4>
+The following command in a Linux shell should sort the text file
+"stuff" and put the result in a file called "stuff.sorted":
+<pre>cat stuff | java CreateRuns 25 | java MergeRuns 7 > stuff.sorted</pre>
+Here, we pretend we can only fit 25 lines of text in memory at once,
+and we perform a 7-way merge. Given that our goal is to make as
+few passes through the data as possible, it would be great to see how
+well our sort merge is performing. One way to do this is to keep a
+count on how many times any run is moved from one file to another
+during the actual merge stages (n.b. exclude distributing the initial
+runs, and the copying of the final run to standard output), and this
+count can be printed to standard error (i.e. System.err ... so that it does not
+wind up in the final sorted output) as the program finishes. Bigger
+numeric arguments should reduce the number of runs that get moved,
+and teams are encouraged to share results (but not code, obviously)
+via the General Discussion Forum. Some large text files will be put
+on Moodle for testing purposes. (Feel free to write a shell script to
+produce a useful application that takes a filename, sorts it, and
+saves the result to another file ... but I want to be able to test
+each component separately.) Note that, while it is obviously good to
+catch input errors, I am not expecting your programs to work if they
+are used in an unexpected fashion, and a shellscript would probably
+help to guard against that in most instances anyway; wherein all
+parameters would be set to optimise for the current system.
+<h4>Documentation</h4>
+The names and IDs of both students in the partnership should appear in the
+header documentation of each source code file. Public methods should have
+at least a little documentation describing what they do, what
+parameters they take, their input and/or output, etc. Any block of
+obscure code should probably have a line or two explaining what it is
+doing so that another programmer could more easily understand it.
+And your code overall should be nicely formatted, have well chosen variable
+and method names, good use of whitespace, and just generally be
+quite readable. This will not factor heavily in the assessment, but
+a small penalty will be incurred if little effort is made to produce
+nice code.
+<h3> Submission requirements:</h3>
+Create an empty directory whose name is the student IDs of both
+partners, separated by an underscore character. Place copies
+of your well-documented source code in the folder, along with an
+optional plain text README file if you wish to communicate anything to
+the marker (such as how to use your program, or any limitations,
+features, etc.). Do not include any other files (no data, no test
+files, no .class files, etc). Submit the folder via Moodle (n.b. may
+as well make a compressed tarball out the directory, but not
+necessary). Doublecheck that your names and student ID#s are
+included in the header documentation of each source code file.
+</p>
+<p>
+<font size=-1>Tony C. Smith, 22/03/2021</font>
+</p>
+</td></tr>
+</table>
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6eb1e5ddedf1ee96',m:'2eDP4oUiV1xS8oGuVrSKIP5yIm2Eo0PSjES3aiBGf50-1647144396-0-AWpNMGsqChL0xSaUWTM1rYTJz3GrBabcKR0bORwCJEDkpQMXKI5dEYp+YFdAOf3Yo8hnSS3aAjHbKtvcQtH0aKAMVqXLgpSwX9bwiMFH48vVDPE6dOqn7NpP3ZZRSSwruXxYROj2g8HI611cYqHVN5F3gNXQjYuHxUsj7PC+NLnQ',s:[0xaea1922f6d,0xe15e7e7b8f],}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6eb1e5ddedf1ee96","token":"68c7be77e3d142759776f2a5b7b8ae93","version":"2021.12.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
