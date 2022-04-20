@@ -11,4 +11,4 @@ The argument for the Mergeruns is for an X way merge
 
 The software won't work with ASCII control characters
 
-Written in 2021, 15/15# External-Sort
+Written in 2021, 15/15
