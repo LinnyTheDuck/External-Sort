@@ -4,6 +4,7 @@ A small program designed to take a file (ideally a text file) and sort each line
 
 ### Usage
 
+> javac \*.java
 > cat input | java CreateRuns 25 | java MergeRuns 7 > input.sorted
 
 The argument for the CreateRuns is the number of lines placed into memory at once <br>
